@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import BedroomImg from "../assets/image 4.png";
 import NightImg from "../assets/image 5.png";
 import AdultsImg from "../assets/image 6.png";
 import ChildrenImg from "../assets/image 7.png";
 import ParkingImg from "../assets/image 8.png";
 import PetImg from "../assets/image 9.png";
+import ConfirmationModal from "./ConfirmationModal";
 
 interface Property {
   id: number;
@@ -32,7 +33,19 @@ const calculateNights = (checkIn: string, checkOut: string): number => {
 };
 
 const PropertyCard: FC<{ property: Property }> = ({ property }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const nights = calculateNights(property.check_in, property.check_out);
+
+  const handleSelect = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleConfirm = () => {
+    // Implement the logic to submit the property selection
+    console.log("Property selection confirmed:", property.id);
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
       <div className="flex flex-col md:flex-row">
@@ -72,7 +85,10 @@ const PropertyCard: FC<{ property: Property }> = ({ property }) => {
             <p className="text-xs md:text-sm">
               Check out: <span className="font-bold">{property.check_out}</span>
             </p>
-            <button className="bg-[#F36F27] hover:bg-[#db682b] text-white font-bold py-2 px-4 rounded-lg w-full md:w-auto mt-2 md:mt-0">
+            <button
+              onClick={handleSelect}
+              className="bg-[#F36F27] hover:bg-[#db682b] text-white font-bold py-2 px-4 rounded-lg w-full md:w-auto mt-2 md:mt-0"
+            >
               Select
             </button>
           </div>
@@ -160,6 +176,11 @@ const PropertyCard: FC<{ property: Property }> = ({ property }) => {
           </div>
         </div>
       </div>
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleConfirm}
+      />
     </div>
   );
 };
