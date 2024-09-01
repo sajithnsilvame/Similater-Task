@@ -1,5 +1,3 @@
-// components/PropertyList.tsx
-
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/similater-logo.png";
@@ -54,9 +52,9 @@ const PropertyList: FC = () => {
         }
 
         const result = await response.json();
-        console.log("API response:", result); // Log the result to check its structure
+        console.log("API response:", result); 
 
-        // Adjust based on the actual structure
+        
         if (result.status === true && Array.isArray(result.data)) {
           setProperties(result.data);
         } else {

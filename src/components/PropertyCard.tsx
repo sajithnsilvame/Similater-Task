@@ -28,7 +28,7 @@ const calculateNights = (checkIn: string, checkOut: string): number => {
   const checkInDate = new Date(checkIn);
   const checkOutDate = new Date(checkOut);
   const diffTime = Math.abs(checkOutDate.getTime() - checkInDate.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   return diffDays;
 };
 
@@ -41,7 +41,6 @@ const PropertyCard: FC<{ property: Property }> = ({ property }) => {
   };
 
   const handleConfirm = () => {
-    // Implement the logic to submit the property selection
     console.log("Property selection confirmed:", property.id);
     setIsModalOpen(false);
   };
@@ -62,7 +61,6 @@ const PropertyCard: FC<{ property: Property }> = ({ property }) => {
           </div>
         </div>
         <div className="w-full md:w-3/4 p-4">
-          {/* Property Name and Price */}
           <div className="flex justify-between items-center mb-2">
             <div className="flex-1">
               <h2 className="text-lg md:text-xl font-bold">
@@ -77,7 +75,7 @@ const PropertyCard: FC<{ property: Property }> = ({ property }) => {
             </p>
           </div>
 
-          {/* Check-in and Check-out Dates */}
+          
           <div className="flex flex-wrap justify-between items-center mb-4">
             <p className="text-xs md:text-sm">
               Check in: <span className="font-bold">{property.check_in}</span>
@@ -95,7 +93,7 @@ const PropertyCard: FC<{ property: Property }> = ({ property }) => {
 
           <hr className="border-t border-gray-200 mb-4" />
 
-          {/* Property Details Grid */}
+          
           <div className="grid grid-cols-2 gap-y-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <div className="flex flex-col items-center md:flex-row">
               <img
